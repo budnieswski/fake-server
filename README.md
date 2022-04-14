@@ -1,5 +1,5 @@
 # Fake Server
-![Project status](https://img.shields.io/badge/version-1.0.1-green.svg)
+![Project status](https://img.shields.io/badge/version-1.2.0-green.svg)
 ![License](https://img.shields.io/dub/l/vibe-d.svg)
 
 The purpose of FakeServer is to respond to a request regardless of the route or method (POST, GET...) called, being mainly used as a server for tests during the development of an application.
