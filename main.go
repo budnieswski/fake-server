@@ -7,9 +7,13 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
 	"time"
 )
+
+const FEATURE_QS_SLEEP = "fs-sleep"
+const FEATURE_QS_STATUS = "fs-status"
 
 func main() {
 	setupCloseHandler()
@@ -26,8 +30,36 @@ func startServer(port string) {
 		if r.ContentLength > 0 {
 			err := json.NewDecoder(r.Body).Decode(&body)
 			if err != nil {
-				errs["body_decode"] = err.Error()
+				errs["body-decode"] = err.Error()
 				log.Printf("[ERROR] Failed to decode body: %s", err.Error())
+			}
+		}
+
+		// Custom sleep time
+		if toSleep := r.URL.Query().Get(FEATURE_QS_SLEEP); toSleep != "" {
+			sleepTime, err := time.ParseDuration(toSleep + "ms")
+
+			if err == nil {
+				log.Printf("[SLEEP] Want to dream %s", sleepTime)
+				time.Sleep(sleepTime)
+				log.Printf("[SLEEP] End of the dream %s", sleepTime)
+			} else {
+				errs["fs-sleep"] = err.Error()
+				log.Printf("[ERROR] Failed to parse custom sleep: %s", err.Error())
+			}
+		}
+
+		// Custom status code
+		statusCode := http.StatusOK
+		if customStatus := r.URL.Query().Get(FEATURE_QS_STATUS); customStatus != "" {
+			parsedStatus, err := strconv.Atoi(customStatus)
+
+			if err == nil {
+				statusCode = parsedStatus
+				log.Printf("[STATUS] Custom status: %d", parsedStatus)
+			} else {
+				errs["fs-status"] = err.Error()
+				log.Printf("[ERROR] Failed to parse custom status: %s", err.Error())
 			}
 		}
 
@@ -42,13 +74,12 @@ func startServer(port string) {
 		})
 
 		w.Header().Set("content-type", "application/json")
-		w.WriteHeader(http.StatusOK)
+		w.WriteHeader(statusCode)
 		w.Write(b)
-
 		fmt.Println()
 	})
 
-	log.Printf("[SERVER] Started on :%s", port)
+	log.Printf("[SERVER] Started on :%s\n\n", port)
 	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		panic(err)
 	}
