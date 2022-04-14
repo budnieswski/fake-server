@@ -148,8 +148,8 @@ The build is not currently being generated, you need to download the source and 
 - [ ] Create flags
     - [ ] Help
     - [ ] Custom port
-- [ ] Create sleep request
-- [ ] Create custom response code
+- [X] Create sleep request
+- [X] Create custom status code
 - [X] Add workflow to build app and create a release
     - [X] Linux
     - [X] MacOS
