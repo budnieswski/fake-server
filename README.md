@@ -5,6 +5,7 @@
 The purpose of FakeServer is to respond to a request regardless of the route or method (POST, GET...) called, being mainly used as a server for tests during the development of an application.
 
 ## Contents
+- [Features](#features)
 - [Example](#example)
 - [Install](#install)
     - [Build](#build)
@@ -13,6 +14,21 @@ The purpose of FakeServer is to respond to a request regardless of the route or 
         - [MacOS](#macos)
         - [Windows](#windows)
 - [Goals](#goals)
+
+## Features
+- HTTP verb agnostic
+- Sleep request by passing queryString `fs-sleep` with time in ms
+  - Eg: `http://localhost:8088/my-super-test?fs-sleep=5000`
+- Status code agnostic by passing queryString `fs-status`
+  - Eg: `http://localhost:8088/my-super-test?fs-status=404`
+- Response contents:
+  - body
+  - errors
+  - headers
+  - method
+  - path
+  - query
+  - time
 
 ## Example
 > Inside a Docker, localhost is called: *http://host.docker.internal:8088*
