@@ -77,7 +77,12 @@ func startServer(port string) {
 
 		w.Header().Set("content-type", "application/json")
 		w.WriteHeader(statusCode)
-		w.Write(b)
+		_, err := w.Write(b)
+
+		if err != nil {
+			log.Printf("[ERROR] Failed write response to client: %s", err.Error())
+		}
+
 		fmt.Println()
 	})
 
