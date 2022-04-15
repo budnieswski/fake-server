@@ -1,0 +1,39 @@
+builds:
+  -
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    targets:
+      - darwin_arm64
+      - darwin_amd64
+      - linux_amd64
+      - windows_amd64
+
+archives:
+  -
+    replacements:
+      darwin: macOS
+      linux: Linux
+      windows: Windows
+      amd64: x86_64
+
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^chore:'
+      - '^docs:'
+      - '^test:'
