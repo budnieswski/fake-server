@@ -1,7 +1,7 @@
 # Fake Server
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/budnieswski/fake-server?color=green&style=flat-square)](https://github.com/budnieswski/fake-server/releases/latest)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/budnieswski/fake-server?style=flat-square)](https://github.com/budnieswski/fake-server/tags)
-![License](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)
+[![License](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](#)
 
 The purpose of FakeServer is to respond to a request regardless of the route or method (POST, GET...) called, being mainly used as a server for tests during the development of an application.
 
