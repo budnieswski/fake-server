@@ -32,7 +32,7 @@ The purpose of FakeServer is to respond to a request regardless of the route or 
   - time
 
 ## Example
-> Inside a Docker, localhost is called: *http://host.docker.internal:8088*
+> Inside a Docker, localhost is called: `http://host.docker.internal:8088`
 
 **Request:**
 ```bash
