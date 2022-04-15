@@ -12,10 +12,12 @@ import (
 	"time"
 )
 
+const VERSION = "v1.2.4"
 const FEATURE_QS_SLEEP = "fs-sleep"
 const FEATURE_QS_STATUS = "fs-status"
 
 func main() {
+	log.Printf("[SERVER] Fake Server %s", VERSION)
 	setupCloseHandler()
 	startServer("8088")
 }
@@ -97,7 +99,7 @@ func setupCloseHandler() {
 	)
 
 	go func() {
-		log.Println("[SIGNAL] Waiting to receive...")
+		log.Printf("[SIGNAL] Waiting to receive...")
 		s := <-c
 		log.Printf("[SIGNAL] Received: %v", s)
 		os.Exit(0)
