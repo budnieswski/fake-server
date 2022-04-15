@@ -1,6 +1,7 @@
 # Fake Server
-![Project status](https://img.shields.io/badge/version-1.2.0-green.svg)
-![License](https://img.shields.io/dub/l/vibe-d.svg)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/budnieswski/fake-server?color=green&style=flat-square)](https://github.com/budnieswski/fake-server/releases/latest)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/budnieswski/fake-server?style=flat-square)](https://github.com/budnieswski/fake-server/tags)
+![License](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)
 
 The purpose of FakeServer is to respond to a request regardless of the route or method (POST, GET...) called, being mainly used as a server for tests during the development of an application.
 
@@ -92,29 +93,8 @@ $ ./fake-server # Run application
 
 ### Download
 #### Linux
-##### 64-bit (more common architecture)
 ```bash
-$ curl -s https://api.github.com/repos/budnieswski/fake-server/releases/latest \
-| awk -F\" '/browser_download_url.*linux_amd64.tar.gz/{print $(NF-1)}' \
-| xargs wget -O - -q \
-| tar -xz
-
-$ ./fake-server # Run application
-```
-##### 32-bit
-```bash
-$ curl -s https://api.github.com/repos/budnieswski/fake-server/releases/latest \
-| awk -F\" '/browser_download_url.*linux_386.tar.gz/{print $(NF-1)}' \
-| xargs wget -O - -q \
-| tar -xz
-
-$ ./fake-server # Run application
-```
-##### arm64
-```bash
-$ curl -s https://api.github.com/repos/budnieswski/fake-server/releases/latest \
-| awk -F\" '/browser_download_url.*linux_arm64.tar.gz/{print $(NF-1)}' \
-| xargs wget -O - -q \
+$ wget -q -O - https://github.com/budnieswski/fake-server/releases/latest/download/fake-server_Linux_x86_64.tar.gz \
 | tar -xz
 
 $ ./fake-server # Run application
@@ -123,34 +103,31 @@ $ ./fake-server # Run application
 #### MacOS
 ##### M1 architecture (arm64)
 ```bash
-$ curl -s https://api.github.com/repos/budnieswski/fake-server/releases/latest \
-| awk -F\" '/browser_download_url.*_darwin_arm64.tar.gz/{print $(NF-1)}' \
-| xargs wget -O - -q \
+$ wget -q -O - https://github.com/budnieswski/fake-server/releases/latest/download/fake-server_macOS_arm64.tar.gz \
 | tar -xz
 
 $ ./fake-server # Run application
 ```
-##### Intel/AMD architecture (amd64)
+##### Intel/AMD architecture (x86_64)
 ```bash
-$ curl -s https://api.github.com/repos/budnieswski/fake-server/releases/latest \
-| awk -F\" '/browser_download_url.*_darwin_amd64.tar.gz/{print $(NF-1)}' \
-| xargs wget -O - -q \
+$ wget -q -O - https://github.com/budnieswski/fake-server/releases/latest/download/fake-server_macOS_x86_64.tar.gz \
 | tar -xz
 
 $ ./fake-server # Run application
 ```
 
 #### Windows
-The build is not currently being generated, you need to download the source and compile yourself ;/
-> See the [Build](#build) section
+You can download the latest version [here](https://github.com/budnieswski/fake-server/releases/latest/download/fake-server_Windows_x86_64.zip)
 
 ## Goals
 - [ ] Create flags
     - [ ] Help
+    - [ ] Version
+    - [ ] Run in background
     - [ ] Custom port
 - [X] Create sleep request
 - [X] Create custom status code
 - [X] Add workflow to build app and create a release
     - [X] Linux
     - [X] MacOS
-    - [ ] Windows
+    - [X] Windows
