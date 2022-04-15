@@ -90,8 +90,6 @@ func setupCloseHandler() {
 	signal.Notify(c,
 		syscall.SIGHUP,
 		syscall.SIGTERM,
-		syscall.SIGUSR1,
-		syscall.SIGUSR2,
 		syscall.SIGILL,
 		syscall.SIGABRT,
 		syscall.SIGQUIT,
