@@ -1,9 +1,9 @@
-name: Create a Release
+name: Release
 
 on:
   push:
     tags:
-      - "*"
+      - "v*"
 
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
       - name: Fetch all tags
         run: git fetch --force --tags
 
-      - name: GoReleaser
+      - name: Create releases
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser
