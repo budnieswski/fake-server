@@ -17,23 +17,48 @@ builds:
 
 archives:
   -
+    name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
     replacements:
       darwin: macOS
       linux: Linux
       windows: Windows
       amd64: x86_64
-
     format_overrides:
       - goos: windows
         format: zip
+    files:
+      - README.md
+      - LICENSE.md
 
 checksum:
   name_template: "checksums.txt"
 
 changelog:
   sort: asc
+  use: github
   filters:
     exclude:
       - '^chore:'
       - '^docs:'
       - '^test:'
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
+  groups:
+    - title: 'New Features'
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 0
+    - title: 'Bug fixes'
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 10
+    - title: Other work
+      order: 999
+
+release:
+  footer: |
+    **Full Changelog**: https://github.com/budnieswski/fake-server/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+    ## What to do next?
+
+    - Read the [documentation](https://github.com/budnieswski/fake-server/blob/{{ .Tag }}/README.md)
