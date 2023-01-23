@@ -35,6 +35,8 @@ func startServer(port string) {
 				errs["body-decode"] = err.Error()
 				log.Printf("[ERROR] Failed to decode body: %s", err.Error())
 			}
+
+			defer r.Body.Close()
 		}
 
 		// Custom sleep time
